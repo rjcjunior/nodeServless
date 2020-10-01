@@ -1,0 +1,36 @@
+
+service: nodeservless
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: sa-east-1
+  memorySize: 256
+  iamRoleStatementes: ##Permissões
+    - Effect: Allow
+      Action:
+        - s3:GetObject
+        - s3:PutObject
+      Resource:
+        - "arn:aws:s3:::*" ##BUCKET
+
+functions:
+  optimize:
+    handler: optimize.handle
+    environment: 
+      bucket: servelessimagerjcjunior ##BUCKET NAME
+    events:
+      - s3:
+          bucket: servelessimagerjcjunior
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: uploads/
+            - suffix: .jpg
+      - s3:
+          bucket: servelessimagerjcjunior
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: uploads/
+            - suffix: .png

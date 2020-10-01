@@ -1,0 +1,16 @@
+{
+  "name": "nodeservless",
+  "version": "1.0.0",
+  "description": "",
+  "main": "optimize.js",
+  "dependencies": {
+    "sharp": "^0.26.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "deploy": "serverless deploy -v"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
